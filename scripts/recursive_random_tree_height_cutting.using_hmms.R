@@ -90,8 +90,10 @@ recursive_cluster_cutting <- function(expr.matrix) {
         ##rand.tumor.expr.data = permute_chr_col_vals(t_tumor.expr.data)
         rand.tumor.expr.data = permute_col_vals(t_tumor.expr.data)
         example_rand_matrix <- rand.tumor.expr.data
-        rand.dist = dist(rand.tumor.expr.data)
-        h_rand <- hclust(rand.dist, method=hclust_method)
+        #rand.dist = dist(rand.tumor.expr.data)
+        #h_rand <- hclust(rand.dist, method=hclust_method)
+        rand.dist = parallelDist::dist(rand.tumor.expr.data)
+        h_rand <- fastcluster::hclust(rand.dist, method=hclust_method)
 
         max_rand_heights = c(max_rand_heights, max(h_rand$height))
     }
